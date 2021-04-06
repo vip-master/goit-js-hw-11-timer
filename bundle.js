@@ -1,0 +1,1 @@
+(()=>{var t,a=["#FFFFFF","#2196F3","#4CAF50","#FF9800","#009688","#795548"];document.body.addEventListener("click",(function(e){switch(e.target.dataset.action){case"start":t=setInterval((function(){return document.body.style.backgroundColor=a[(0,5,Math.floor(6*Math.random()+0))]}),1e3),e.target.disable=!0;break;case"stop":clearInterval(t),e.target.disable=!1}}))})();
