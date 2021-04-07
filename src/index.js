@@ -27,16 +27,19 @@ const secs = (time) => Math.floor((time % (1000 * 60)) / 1000);
 
 class CountdownTimer {
     constructor({ selector, targetDate }) {
-        this.selector = selector;
+        this.selector = document.querySelector(`${selector}`);
         this.targetDate = targetDate;
         this.timer = setInterval(() => {
             let var0 = this.targetDate.getTime() - Date.now();
-            if (var0 < 0) var0 = -var0;
+            if (var0 < 0) {
+                var0 = 0;
+                this.delete();
+            }
 
-            document.querySelector('[data-value="days"]').textContent = days(var0)
-            document.querySelector('[data-value="hours"]').textContent = hours(var0)
-            document.querySelector('[data-value="mins"]').textContent = mins(var0)
-            document.querySelector('[data-value="secs"]').textContent = secs(var0)
+            this.selector.querySelector('[data-value="days"]').textContent = days(var0)
+            this.selector.querySelector('[data-value="hours"]').textContent = hours(var0)
+            this.selector.querySelector('[data-value="mins"]').textContent = mins(var0)
+            this.selector.querySelector('[data-value="secs"]').textContent = secs(var0)
         }, 900)
     }
 
@@ -50,4 +53,8 @@ class CountdownTimer {
 const timer = new CountdownTimer({
     selector: '#timer-1',
     targetDate: new Date('Jul 17, 2029'),
+});
+const timer2 = new CountdownTimer({
+    selector: '#timer-2',
+    targetDate: new Date('Jul 17, 2019'),
 });
